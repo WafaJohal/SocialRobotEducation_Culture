@@ -51,50 +51,50 @@ data_6dim.rename(columns={'ctr':'iso_a3'},inplace=True)
 cultural_data = pd.merge(data_anno,data_6dim,on="iso_a3",how='left')
 data_anno_all = pd.merge(data_anno_all,data_6dim,on="iso_a3",how='left')
 
-def aggrid_interactive_table(df: pd.DataFrame):
-    """Creates an st-aggrid interactive table based on a dataframe.
+# def aggrid_interactive_table(df: pd.DataFrame):
+#     """Creates an st-aggrid interactive table based on a dataframe.
 
-    Args:
-        df (pd.DataFrame]): Source dataframe
+#     Args:
+#         df (pd.DataFrame]): Source dataframe
 
-    Returns:
-        dict: The selected row
-    """
-    options = GridOptionsBuilder.from_dataframe(
-        df, enableRowGroup=True, enableValue=True, enablePivot=True
-    )
+#     Returns:
+#         dict: The selected row
+#     """
+#     options = GridOptionsBuilder.from_dataframe(
+#         df, enableRowGroup=True, enableValue=True, enablePivot=True
+#     )
 
-    options.configure_side_bar()
+#     options.configure_side_bar()
 
-    options.configure_selection("single")
-    selection = AgGrid(
-        df,
-        enable_enterprise_modules=True,
-        gridOptions=options.build(),
-        theme="light",
-        update_mode=GridUpdateMode.MODEL_CHANGED,
-        allow_unsafe_jscode=True,
-    )
+#     options.configure_selection("single")
+#     selection = AgGrid(
+#         df,
+#         enable_enterprise_modules=True,
+#         gridOptions=options.build(),
+#         theme="light",
+#         update_mode=GridUpdateMode.MODEL_CHANGED,
+#         allow_unsafe_jscode=True,
+#     )
 
-    return selection
+#     return selection
 
-def get_rows_contains_word(df,colname, word):
-    contain_values = df[df[colname].str.lower().str.strip().str.contains(word)]
-    return contain_values
+# def get_rows_contains_word(df,colname, word):
+#     contain_values = df[df[colname].str.lower().str.strip().str.contains(word)]
+#     return contain_values
 
 with header_container:
     st.title("Social Robots in Education")
     st.text("""This webpage shows the analysis for Cultural Social robots in Education
     """)
 
-with dataset_container:
-    st.header('Loading the dataset')
+# with dataset_container:
+#     st.header('Loading the dataset')
 
-    selection = aggrid_interactive_table(df=cultural_data)
+#     selection = aggrid_interactive_table(df=cultural_data)
 
-    if selection:
-        st.write("You selected:")
-        st.json(selection["selected_rows"])
+#     if selection:
+#         st.write("You selected:")
+#         st.json(selection["selected_rows"])
     
 # """ with wordcloud_container:
 #     st.header("Wordcloud of keywords used in the dataset")

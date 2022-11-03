@@ -1,5 +1,5 @@
 ###### Requirements without Version Specifiers ######
-streamlit-aggrid
+#streamlit-aggrid
 openpyxl
 nltk
 pycountry
